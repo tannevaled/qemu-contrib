@@ -1,0 +1,20 @@
+#!ipxe
+
+echo -- Entering iPXE script (git:<%=@git_commit%>)--
+set user-class chain-ipxe-loader
+show user-class
+dhcp net0
+show net0/ip
+show filename
+
+set p_uuid         uuid=${uuid}
+set p_manufacturer manufacturer=${manufacturer}
+set p_product      product=${product}
+set p_serial       serial=${serial}
+set p_asset        asset=${asset:uristring}
+set p_mac          mac=${net0/mac:hexhyp}
+
+set params         ${p_uuid}&${p_manufacturer}&${p_product}&${p_serial}&${p_asset}&${p_mac}
+
+echo Chaining to the next step
+boot ${filename}?${params}

@@ -1,0 +1,7 @@
+#
+# qemu-contrib : <%=@git_commit%>
+#
+# chain boot with the NetBoot.app loader
+#
+dhcp-userclass=chain-ipxe-loader,"chain-ipxe-loader"
+dhcp-boot=net:chain-ipxe-loader,"http://netboot/loader"
